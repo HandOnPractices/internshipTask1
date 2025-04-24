@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Client, HealthProgram
+from .models import Client, HealthProgram
 # Register your models here.
 @admin.register(HealthProgram)
 class HealthProgramAdmin(admin.ModelAdmin):
