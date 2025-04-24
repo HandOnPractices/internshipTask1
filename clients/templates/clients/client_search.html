@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Clients</title>
 </head>
-<body> <h1>Search Clients</h1>
+<body>
+    <h1>Search Clients</h1>
     <form method="get">
-        <input type="text" name="q" placeholder="Search by name" value="{{ query }}">
+        <input type="text" name="q" placeholder="Search by name or email" value="{{ query }}">
         <button type="submit">Search</button>
     </form>
     <h2>Results</h2>
     <ul>
         {% for client in clients %}
-            <li><a href="{% url 'client_detail' client.id %}">{{ client }}</a></li>
+            <li><a href="{% url 'client_detail' client.id %}">{{ client }} ({{ client.email }})</a></li>
         {% empty %}
             <li>No clients found.</li>
         {% endfor %}

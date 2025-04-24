@@ -4,6 +4,8 @@ from django.shortcuts import render
 from django.views.generic import DetailView
 from .models import Client
 from django.db.models import Q
+from .serializers import ClientSerializer
+from rest_framework import generics
 
 def client_search(request):
     """View to search for clients by name."""
@@ -23,3 +25,11 @@ class ClientDetailView(DetailView):
     model = Client
     template_name = 'clients/client_detail.html'
     context_object_name = 'client'
+
+class ClientDetailAPIView(generics.RetrieveAPIView):
+    """
+    API view to retrieve a client's profile.
+    """
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+    lookup_field = 'pk'
