@@ -23,7 +23,7 @@ class Client(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     date_of_birth = models.CharField(max_length=10)  # Format: YYYY-MM-DD
-    Gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F','Female')])
+    gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F','Female')])
     address = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=15)
     email = models.EmailField()

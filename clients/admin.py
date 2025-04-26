@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Client, HealthProgram
+from .models import Client, HealthProgram
 # Register your models here.
 @admin.register(HealthProgram)
 class HealthProgramAdmin(admin.ModelAdmin):
@@ -13,4 +13,4 @@ class HealthProgramAdmin(admin.ModelAdmin):
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'date_of_birth', 'gender', 'address', 'phone_number', 'email', 'health_program', 'created_at', 'updated_at')
     search_fields = ('first_name', 'last_name', 'email')
-    filter_horizontal = ('health_program',)
+    list_filter = ('gender', 'health_program')
