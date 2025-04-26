@@ -1,8 +1,8 @@
-#Health System
+# Health System
 - Health System is a Django-based web application for managing health programs and client information, with a RESTful API and Bootstrap-powered frontend.
 
-##Features
-Health Program Management: Create, view, update, delete health programs.
+## Features
+- Health Program Management: Create, view, update, delete health programs.
 
 - Client Management: Register, search, view client profiles and associated programs.
 
@@ -16,30 +16,22 @@ Health Program Management: Create, view, update, delete health programs.
 
 - Tech Stack: Django 4.x, Django REST Framework, Python 3.13, Git.
 
-##Installation
-Clone the Repository:
+## Installation
+- Clone the Repository:
+- git clone https://github.com/HandOnPractices/internshipTask1.git
+- cd internshipTask1
+## Set Up Virtual Environment:
+- python -m venv myenv
+####  To activate the virtual environment
+- source myenv/bin/activate  
+### Windows: 
+- myenv\Scripts\activate
+###Install Dependencies:
+- pip install django djangorestapi
+#### Configure MySQL Database:
+- Update health_system/settings.py:
 
-bash
-Copy code
-git clone https://github.com//health-system.git
-cd health-system
-Set Up Virtual Environment:
-
-bash
-Copy code
-python -m venv myenv
-source myenv/bin/activate  # Windows: myenv\Scripts\activate
-Install Dependencies:
-
-bash
-Copy code
-pip install -r requirements.txt
-Configure MySQL Database:
-Update health_system/settings.py:
-
-python
-Copy code
-DATABASES = {
+`DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'health_system_db',
@@ -48,37 +40,37 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '3306',
     }
-}
-Apply Migrations & Create Superuser:
-
-bash
-Copy code
+}`
+#### Apply Migrations & Create Superuser:
+`
 python manage.py makemigrations
 python manage.py migrate
 python manage.py createsuperuser
 Run Server:
-
-bash
-Copy code
-python manage.py runserver
-Usage
+`
+### Start the server
+`python manage.py runserver`
+Usagw
+`
 Frontend Home: http://127.0.0.1:8000/clients/
-
+`
+`
 Admin Panel: http://127.0.0.1:8000/admin/
-
-API Endpoints Example:
-
+`
+### API Endpoints Example:
+`
 GET /clients/api/programs/ (List Programs)
-
+`
+`
 POST /clients/api/programs/ (Create Program)
-
+`
+`
 GET /clients/api/clients/ (List Clients)
+`
 
-Test APIs using Postman or cURL.
 
-Project Structure
-perl
-Copy code
+#### Project Structure
+`
 health-system/
 ├── clients/            # App (models, views, templates, serializers)
 ├── health_system/      # Project settings and URLs
@@ -86,8 +78,9 @@ health-system/
 ├── requirements.txt
 └── README.md
 Troubleshooting
-MySQL errors: Check server status and credentials.
+`
+- MySQL errors: Check server status and credentials.
 
-Migration issues: Delete migrations folder and re-run migrations.
+- Migration issues: Delete migrations folder and re-run migrations.
 
-Admin login issues: Reset superuser password if needed.
+- Admin login issues: Reset superuser password if needed.
