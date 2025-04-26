@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Client Profile</title>
-</head>
-<body>
-    <h1>{{ client.first_name }} {{ client.last_name }}</h1>
-    <p><strong>Date of Birth:</strong> {{ client.date_of_birth }}</p>
-    <p><strong>Gender:</strong> {{ client.get_gender_display }}</p>
-    <p><strong>Address:</strong> {{ client.address }}</p>
-    <p><strong>Phone Number:</strong> {{ client.phone_number }}</p>
-    <p><strong>Email:</strong> {{ client.email }}</p>
-    <h2>Health Program</h2>
-    <p>
-        {% if client.health_program %}
-            {{ client.health_program.name }}
-        {% else %}
-            Not enrolled in any program.
-        {% endif %}
-    </p>
-    <a href="{% url 'client_search' %}">Back to Search</a>
-</body>
-</html>
+{% extends 'clients/base.html' %}
+{% block content %}
+    <h2>Client Profile</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ client.first_name }} {{ client.last_name }}</h5>
+            <p class="card-text"><strong>Email:</strong> {{ client.email }}</p>
+            <p class="card-text"><strong>Date of Birth:</strong> {{ client.date_of_birth }}</p>
+            <p class="card-text"><strong>Gender:</strong> {{ client.get_gender_display }}</p>
+            <p class="card-text"><strong>Address:</strong> {{ client.address }}</p>
+            <p class="card-text"><strong>Phone Number:</strong> {{ client.phone_number }}</p>
+            <p class="card-text"><strong>Health Program:</strong> {{ client.health_program.name|default:"None" }}</p>
+            <a href="{% url 'client_search' %}" class="btn btn-primary">Back to Search</a>
+        </div>
+    </div>
+{% endblock %}
