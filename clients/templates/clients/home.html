@@ -1,6 +1,51 @@
 {% extends 'clients/base.html' %}
 
-{% block content %}
-  <h1>Welcome to the health System</h1>
-  <p>This is the homepage</p>
+{% block content %} <h2>Welcome, Doctor</h2>
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Health Programs</h3>
+        <div id="program-list" class="list-group"></div>
+        <a href="{% url 'program_create' %}" class="btn btn-primary mt-3">Create New Program</a>
+    </div>
+</div>
+<div id="alert-container"></div>
+{% endblock %}
+
+
+{% block script %}
+<script>
+    // Fetch and display health programs
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('/clients/api/programs/')
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to fetch programs');
+                return response.json();
+            })
+            .then(data => {
+                const programList = document.getElementById('program-list');
+                if (data.length === 0) {
+                    programList.innerHTML = '<div class="list-group-item">No programs available.</div>';
+                    return;
+                }
+                data.forEach(program => {
+                    const item = document.createElement('div');
+                    item.className = 'list-group-item';
+                    item.innerHTML = `
+                        <h5>${program.name}</h5>
+                        <p>${program.description}</p>
+                        <p><strong>Start:</strong> ${program.start_date} | <strong>End:</strong> ${program.end_date}</p>
+                    `;
+                    programList.appendChild(item);
+                });
+            })
+            .catch(error => {
+                const alertContainer = document.getElementById('alert-container');
+                alertContainer.innerHTML = `
+                    <div class="alert alert-danger" role="alert">
+                        Error: ${error.message}
+                    </div>
+                `;
+            });
+    });
+</script>
 {% endblock %}
