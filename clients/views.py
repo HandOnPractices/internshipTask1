@@ -4,7 +4,6 @@ from rest_framework import generics
 from .models import Client, HealthProgram
 from .serializers import ClientSerializer, HealthProgramSerializer
 from django.db.models import Q
-from django.views.decorators.csrf import csrf_exempt
 
 # Non-API Views
 def home(request):
@@ -41,25 +40,21 @@ class ClientDetailView(DetailView):
     context_object_name = 'client'
 
 # API Views
-@csrf_exempt
 class HealthProgramListCreateAPIView(generics.ListCreateAPIView):
     """List all health programs or create a new one."""
     queryset = HealthProgram.objects.all()
     serializer_class = HealthProgramSerializer
 
-@csrf_exempt
 class HealthProgramRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     """Retrieve, update, or delete a health program by ID."""
     queryset = HealthProgram.objects.all()
     serializer_class = HealthProgramSerializer
 
-@csrf_exempt
 class ClientListCreateAPIView(generics.ListCreateAPIView):
     """List all clients or create a new one."""
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
 
-@csrf_exempt
 class ClientRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     """Retrieve, update, or delete a client by ID."""
     queryset = Client.objects.all()
