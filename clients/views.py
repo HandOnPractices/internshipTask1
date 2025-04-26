@@ -26,6 +26,10 @@ def client_search(request):
         'query': query
     })
 
+def program_create(request):
+    """Display the program creation page."""
+    return render(request, 'clients/program_create.html')
+
 class ClientDetailView(DetailView):
     """View to display a client's profile."""
     model = Client
