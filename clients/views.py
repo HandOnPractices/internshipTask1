@@ -11,15 +11,18 @@ from rest_framework import generics
 def home(request):
     """View to render the home page."""
     return render(request, 'clients/home.html')
-
+def client_create(request):
+    """Display the client registration page."""
+    return render(request, 'clients/client_create.html')
 
 def client_search(request):
-    """View to search for clients by name."""
+    """View to search for clients by name or email"""
     query = request.GET.get('q', '')
     clients = Client.objects.all()
     if query:
         clients = clients.filter(
-            Q(first_name__icontains=query) | Q(last_name__icontains=query)
+            Q(first_name__icontains=query) | Q(last_name__icontains=query) | 
+            Q(email__icontains=query)
         )
     return render(request, 'clients/client_search.html', {
         'clients': clients,
@@ -35,14 +38,6 @@ class ClientDetailView(DetailView):
     model = Client
     template_name = 'clients/client_detail.html'
     context_object_name = 'client'
-
-class ClientDetailAPIView(generics.RetrieveAPIView):
-    """
-    API view to retrieve a client's profile.
-    """
-    queryset = Client.objects.all()
-    serializer_class = ClientSerializer
-    lookup_field = 'pk'
 
 
 # API views for Client
