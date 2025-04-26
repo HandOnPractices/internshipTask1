@@ -2,9 +2,9 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import DetailView
-from .models import Client
+from .models import Client, HealthProgram
 from django.db.models import Q
-from .serializers import ClientSerializer
+from .serializers import ClientSerializer, HealthProgramSerializer
 from rest_framework import generics
 
 
@@ -52,3 +52,13 @@ class ClientRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
 
+# API Views for HealthProgram
+class HealthProgramListCreateAPIView(generics.ListCreateAPIView):
+    """List all health programs or create a new one."""
+    queryset = HealthProgram.objects.all()
+    serializer_class = HealthProgramSerializer
+
+class HealthProgramRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """Retrieve, update, or delete a health program by ID."""
+    queryset = HealthProgram.objects.all()
+    serializer_class = HealthProgramSerializer
