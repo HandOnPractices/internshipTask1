@@ -1,22 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Search Clients</title>
-</head>
-<body>
-    <h1>Search Clients</h1>
-    <form method="get">
-        <input type="text" name="q" placeholder="Search by name or email" value="{{ query }}">
-        <button type="submit">Search</button>
-    </form>
-    <h2>Results</h2>
-    <ul>
-        {% for client in clients %}
-            <li><a href="{% url 'client_detail' client.id %}">{{ client }} ({{ client.email }})</a></li>
-        {% empty %}
-            <li>No clients found.</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'admin:index' %}">Back to Admin</a>
-</body>
-</html>
+{% extends 'clients/base.html' %}
+{% block content %}
+    <h2>Search Clients</h2>
+    <div class="card">
+        <div class="card-body">
+            <form method="get" class="mb-4">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search by name or email" value="{{ query }}">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+            <h3 class="card-title">Results</h3>
+            <div class="list-group">
+                {% for client in clients %}
+                    <a href="{% url 'client_detail' client.id %}" class="list-group-item list-group-item-action">
+                        {{ client.first_name }} {{ client.last_name }} ({{ client.email }})
+                    </a>
+                {% empty %}
+                    <div class="alert alert-info" role="alert">
+                        No clients found.
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="{% url 'admin:index' %}" class="btn btn-secondary mt-3">Back to Admin</a>
+        </div>
+    </div>
+{% endblock %}
