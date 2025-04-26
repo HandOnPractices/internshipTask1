@@ -133,3 +133,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'clients.CustomUser'
+
+# Admin Registration Key
+ADMIN_REGISTRATION_KEY = 'DOCTOR2025'
