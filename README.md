@@ -26,7 +26,7 @@
 - source myenv/bin/activate  
 ### Windows: 
 - myenv\Scripts\activate
-###Install Dependencies:
+### Install Dependencies:
 - pip install django djangorestapi
 #### Configure MySQL Database:
 - Update health_system/settings.py:
@@ -84,3 +84,27 @@ Troubleshooting
 - Migration issues: Delete migrations folder and re-run migrations.
 
 - Admin login issues: Reset superuser password if needed.
+
+## Homepage
+  ![image](https://github.com/user-attachments/assets/4d21d41c-0cb4-4010-9342-63b2de8db84b)
+## Create Program page
+![image](https://github.com/user-attachments/assets/6a3143b5-b525-4f4f-bf40-bc08484c67c0)
+
+- Program successfully created
+![image](https://github.com/user-attachments/assets/643444b7-7146-441b-a990-2e743b97056e)
+## Register a client and add to a program
+![image](https://github.com/user-attachments/assets/8437e999-818d-49cb-81e1-59011dfc672d)
+
+## Search For Client
+![image](https://github.com/user-attachments/assets/06a8e233-0927-4a2e-a846-b08bb40ceae1)
+- search implemented
+  ![image](https://github.com/user-attachments/assets/aff4d436-c0d2-493f-b0ce-fafc3361133a)
+### API END POINTS
+- programs
+![image](https://github.com/user-attachments/assets/b39f58bb-8110-45db-9114-e60ff7fa4939)
+- clients
+  ![image](https://github.com/user-attachments/assets/1b63921e-47c2-40b0-bf6b-8a2e424d4c23)
+- API TEST USING CURL
+  ![image](https://github.com/user-attachments/assets/50070c15-6e10-46d7-9af1-b173652c92c0)
+
+
