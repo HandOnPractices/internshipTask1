@@ -8,6 +8,11 @@ from .serializers import ClientSerializer
 from rest_framework import generics
 
 
+def home(request):
+    """View to render the home page."""
+    return render(request, 'clients/home.html')
+
+
 def client_search(request):
     """View to search for clients by name."""
     query = request.GET.get('q', '')
@@ -36,6 +41,14 @@ class ClientDetailAPIView(generics.RetrieveAPIView):
     lookup_field = 'pk'
 
 
-def home(request):
-    """View to render the home page."""
-    return render(request, 'clients/home.html')
+# API views for Client
+class ClientListCreateAPIView(generics.ListCreateAPIView):
+    """List all clients or create a new one."""
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+
+class ClientRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """Retrieve, update, or delete a client by ID."""
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+
