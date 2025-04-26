@@ -1,18 +1,17 @@
 {% extends 'clients/base.html' %}
-
-{% block content %} <h2>Welcome, Doctor</h2>
-<div class="card">
-    <div class="card-body">
-        <h3 class="card-title">Health Programs</h3>
-        <div id="program-list" class="list-group"></div>
-        <a href="{% url 'program_create' %}" class="btn btn-primary mt-3">Create New Program</a>
+{% block content %}
+    <h2>Welcome, Doctor</h2>
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Health Programs</h3>
+            <div id="program-list" class="list-group"></div>
+            <a href="{% url 'program_create' %}" class="btn btn-primary mt-3">Create New Program</a>
+        </div>
     </div>
-</div>
-<div id="alert-container"></div>
+    <div id="alert-container"></div>
 {% endblock %}
 
-
-{% block script %}
+{% block scripts %}
 <script>
     // Fetch and display health programs
     document.addEventListener('DOMContentLoaded', () => {
