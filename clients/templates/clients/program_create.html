@@ -4,6 +4,7 @@
     <div class="card">
         <div class="card-body">
             <form id="program-form">
+                {% csrf_token %}
                 <div class="mb-3">
                     <label for="name" class="form-label">Program Name</label>
                     <input type="text" class="form-control" id="name" name="name" required>
@@ -39,20 +40,25 @@
             end_date: formData.get('end_date')
         };
 
+        console.log('Sending data:', data);
+
         fetch('/clients/api/programs/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken') // Include CSRF token
             },
             body: JSON.stringify(data)
         })
         .then(response => {
+            console.log('Response status:', response.status);
             if (!response.ok) {
-                return response.json().then(err => { throw new Error(JSON.stringify(err)); });
+                return response.json().then(err => { throw err; });
             }
             return response.json();
         })
         .then(data => {
+            console.log('Success response:', data);
             const alertContainer = document.getElementById('alert-container');
             alertContainer.innerHTML = `
                 <div class="alert alert-success" role="alert">
@@ -62,10 +68,23 @@
             document.getElementById('program-form').reset();
         })
         .catch(error => {
+            console.error('Error:', error);
             const alertContainer = document.getElementById('alert-container');
+            let errorMessage = 'An error occurred while creating the program.';
+            if (error.name) {
+                errorMessage = `Name: ${error.name.join(', ')}`;
+            } else if (error.description) {
+                errorMessage = `Description: ${error.description.join(', ')}`;
+            } else if (error.start_date) {
+                errorMessage = `Start Date: ${error.start_date.join(', ')}`;
+            } else if (error.end_date) {
+                errorMessage = `End Date: ${error.end_date.join(', ')}`;
+            } else if (error.non_field_errors) {
+                errorMessage = error.non_field_errors.join(', ');
+            }
             alertContainer.innerHTML = `
                 <div class="alert alert-danger" role="alert">
-                    Error: ${error.message}
+                    ${errorMessage}
                 </div>
             `;
         });
