@@ -7,6 +7,7 @@ from django.db.models import Q
 from .serializers import ClientSerializer
 from rest_framework import generics
 
+
 def client_search(request):
     """View to search for clients by name."""
     query = request.GET.get('q', '')
@@ -33,3 +34,8 @@ class ClientDetailAPIView(generics.RetrieveAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
     lookup_field = 'pk'
+
+
+def home(request):
+    """View to render the home page."""
+    return render(request, 'clients/home.html')
